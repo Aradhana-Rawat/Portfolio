@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTestimonials();
 
     const form = document.getElementById('sessionForm');
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // Get form values
@@ -150,28 +150,66 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const date = document.getElementById('session-date').value;
 
-        // Format email body
-        const emailBody = `
-New Trial Session Request
+        // Format email content
+        const emailContent = `
+            New Trial Session Request
 
-Student Details:
-Name: ${name}
-Grade: ${grade}
-Subject: ${subject}
-Phone: ${phone}
-Email: ${email}
-Preferred Date: ${date}
+            Student Details:
+            Name: ${name}
+            Grade: ${grade}
+            Subject: ${subject}
+            Phone: ${phone}
+            Email: ${email}
+            Preferred Date: ${date}
         `.trim();
 
-        // Create mailto link with form details
-        const mailtoLink = `mailto:aradhana8439@gmail.com?subject=New Trial Session Request - ${name}&body=${encodeURIComponent(emailBody)}`;
-        
-        // Open default email client
-        window.location.href = mailtoLink;
+        try {
+            const response = await fetch('https://api.resend.com/v1/email/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer re_iLMRgjLq_PPDHrTbsGY7fJruDWkPpW1T4',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    from: 'Aradhana Rawat <onboarding@resend.dev>',
+                    to: ['aradhana8439@gmail.com'],
+                    subject: `New Trial Session Request - ${name}`,
+                    text: emailContent,
+                    html: `
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                            <h2 style="color: #1a237e;">New Trial Session Request</h2>
+                            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px;">
+                                <h3 style="color: #009688;">Student Details:</h3>
+                                <p><strong>Name:</strong> ${name}</p>
+                                <p><strong>Grade:</strong> ${grade}</p>
+                                <p><strong>Subject:</strong> ${subject}</p>
+                                <p><strong>Phone:</strong> ${phone}</p>
+                                <p><strong>Email:</strong> ${email}</p>
+                                <p><strong>Preferred Date:</strong> ${date}</p>
+                            </div>
+                        </div>
+                    `
+                })
+            });
 
-        // Show confirmation
-        alert('Thank you for your interest! Your email client will open with the session details. Looking forward to helping you succeed!');
-        form.reset();
+            const data = await response.json();
+
+            if (response.ok) {
+                form.reset();
+                alert('Thank you for your interest! Your session request has been sent successfully. I will contact you soon to confirm the details.');
+            } else {
+                console.error('Error details:', data);
+                throw new Error(data.message || 'Failed to send email');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was an error sending your request. Please try contacting me directly via email at aradhana8439@gmail.com');
+            
+            // Fallback to mailto link if API fails
+            const mailtoLink = `mailto:aradhana8439@gmail.com?subject=New Trial Session Request - ${name}&body=${encodeURIComponent(emailContent)}`;
+            window.location.href = mailtoLink;
+        }
     });
 });
 
