@@ -1,0 +1,205 @@
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
+        }
+    });
+});
+
+// Testimonials Data
+const testimonials = [
+    {
+        text: "Before joining Ma'am's classes, organic chemistry was a nightmare for me. Her unique way of explaining mechanisms through real-life examples helped me score 98% in my board exams. Now I'm pursuing B.Tech in Chemical Engineering!",
+        name: "Priya Sharma",
+        detail: "Grade 12 Chemistry | Now at IIT Roorkee"
+    },
+    {
+        text: "I struggled with trigonometry and was scoring barely 60%. Ma'am's visual approach and step-by-step problem solving techniques helped me achieve 92% in my boards. Her weekend doubt-clearing sessions were particularly helpful.",
+        name: "Arjun Patel",
+        detail: "Grade 10 Mathematics | Distinction Holder"
+    },
+    {
+        text: "Coming from a Hindi medium background, I found A-level Chemistry intimidating. Ma'am not only helped me understand complex concepts but also improved my technical vocabulary. Secured an A* and got admission in my dream university!",
+        name: "Riya Gupta",
+        detail: "A-level Chemistry | University of Delhi"
+    },
+    {
+        text: "Science was just another subject until Ma'am showed us its practical applications. Her lab demonstrations and real-world examples made concepts crystal clear. Scored 95% in my boards and won the district science competition!",
+        name: "Aditya Singh",
+        detail: "Grade 10 Science | District Science Olympiad Winner"
+    },
+    {
+        text: "The way Ma'am explains redox reactions and electrochemistry is exceptional. Her notes and practice materials helped me crack JEE Mains with 99.2 percentile in Chemistry. Forever grateful for her guidance!",
+        name: "Neha Verma",
+        detail: "Grade 11-12 Chemistry | JEE Mains Qualified"
+    },
+    {
+        text: "I was terrified of Mathematics before joining O-levels. Ma'am's systematic approach and regular mock tests boosted my confidence. Her special focus on common mistakes helped me avoid errors in the final exam.",
+        name: "Rahul Kumar",
+        detail: "O-level Mathematics | A* Grade"
+    },
+    {
+        text: "Organic Chemistry mechanisms seemed impossible until Ma'am introduced her famous 'story-telling' method. Her emphasis on understanding rather than memorizing helped me top the ISC board in my school!",
+        name: "Ananya Mishra",
+        detail: "Grade 12 Chemistry | School Topper"
+    },
+    {
+        text: "What sets Ma'am apart is her problem-solving approach. She taught us how to think analytically. Her special worksheets for competitive exams helped me crack NEET in my first attempt!",
+        name: "Rohan Joshi",
+        detail: "Grade 11-12 Chemistry | NEET Qualified"
+    },
+    {
+        text: "Ma'am's method of teaching coordinate geometry through real-world applications made it my favorite chapter. Her extra practice sessions during weekends made all the difference in my final score.",
+        name: "Ishaan Mehta",
+        detail: "Grade 10 Mathematics | 96% in Boards"
+    },
+    {
+        text: "Being a working professional, I needed flexible timing for my A-level preparation. Ma'am's online sessions and recorded lectures were a blessing. Her exam-oriented tips were invaluable!",
+        name: "Kavya Reddy",
+        detail: "A-level Chemistry | Distance Learning Student"
+    }
+];
+
+// Testimonial Slider
+let currentTestimonial = 0;
+
+function setupTestimonials() {
+    const slider = document.querySelector('.testimonials-slider');
+    const dotsContainer = document.querySelector('.testimonial-dots');
+    
+    // Create testimonial cards
+    testimonials.forEach((testimonial, index) => {
+        const card = document.createElement('div');
+        card.className = `testimonial-card ${index === 0 ? 'active' : ''}`;
+        card.innerHTML = `
+            <p>"${testimonial.text}"</p>
+            <h4>${testimonial.name}</h4>
+            <p class="student-detail">${testimonial.detail}</p>
+        `;
+        slider.appendChild(card);
+
+        // Create dot
+        const dot = document.createElement('button');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
+        dot.addEventListener('click', () => goToTestimonial(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    // Setup navigation
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    prevBtn.addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        updateTestimonials();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        updateTestimonials();
+    });
+
+    // Auto-advance testimonials
+    setInterval(() => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        updateTestimonials();
+    }, 5000);
+}
+
+function updateTestimonials() {
+    const cards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.dot');
+
+    cards.forEach((card, index) => {
+        card.classList.toggle('active', index === currentTestimonial);
+    });
+
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentTestimonial);
+    });
+}
+
+function goToTestimonial(index) {
+    currentTestimonial = index;
+    updateTestimonials();
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupTestimonials();
+
+    const form = document.getElementById('sessionForm');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('student-name').value;
+        const grade = document.getElementById('grade').value;
+        const subject = document.getElementById('subject').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const date = document.getElementById('session-date').value;
+
+        // Format email body
+        const emailBody = `
+New Trial Session Request
+
+Student Details:
+Name: ${name}
+Grade: ${grade}
+Subject: ${subject}
+Phone: ${phone}
+Email: ${email}
+Preferred Date: ${date}
+        `.trim();
+
+        // Create mailto link with form details
+        const mailtoLink = `mailto:aradhana8439@gmail.com?subject=New Trial Session Request - ${name}&body=${encodeURIComponent(emailBody)}`;
+        
+        // Open default email client
+        window.location.href = mailtoLink;
+
+        // Show confirmation
+        alert('Thank you for your interest! Your email client will open with the session details. Looking forward to helping you succeed!');
+        form.reset();
+    });
+});
+
+// Scroll Animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        observer.observe(section);
+    });
+});
+
+// Set minimum date for booking
+document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('session-date');
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+});
