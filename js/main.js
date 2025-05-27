@@ -2,15 +2,67 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
 
-    navToggle.addEventListener('click', () => {
+    // Toggle mobile menu
+    navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         navLinks.classList.toggle('active');
+        navToggle.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close mobile menu when clicking on nav links
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    navLinksItems.forEach(link => {
+        if (link.getAttribute('href').startsWith('#')) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         }
     });
 });
@@ -146,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('student-name').value;
         const grade = document.getElementById('grade').value;
         const subject = document.getElementById('subject').value;
+        const sessionType = document.getElementById('session-type').value;
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const date = document.getElementById('session-date').value;
@@ -158,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Name: ${name}
             Grade: ${grade}
             Subject: ${subject}
+            Session Type: ${sessionType}
             Phone: ${phone}
             Email: ${email}
             Preferred Date: ${date}
@@ -184,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p><strong>Name:</strong> ${name}</p>
                                 <p><strong>Grade:</strong> ${grade}</p>
                                 <p><strong>Subject:</strong> ${subject}</p>
+                                <p><strong>Session Type:</strong> ${sessionType}</p>
                                 <p><strong>Phone:</strong> ${phone}</p>
                                 <p><strong>Email:</strong> ${email}</p>
                                 <p><strong>Preferred Date:</strong> ${date}</p>
