@@ -11,21 +11,30 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+<<<<<<< HEAD
     max-width: 100%;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 html {
     scroll-behavior: smooth;
+<<<<<<< HEAD
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+<<<<<<< HEAD
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 /* Navigation */
@@ -40,9 +49,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .nav-brand {
@@ -89,18 +101,24 @@ body {
     color: white;
     text-align: center;
     padding: 0 1rem;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .hero-content {
     max-width: 800px;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     padding-left: clamp(0.5rem, 4vw, 2rem);
     padding-right: clamp(0.5rem, 4vw, 2rem);
     box-sizing: border-box;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .profile-image {
@@ -162,9 +180,12 @@ body {
 /* Sections */
 section {
     padding: 5rem 2rem;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .section-title {
@@ -182,11 +203,14 @@ section {
 .about-content {
     max-width: 1200px;
     margin: 0 auto;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     padding-left: clamp(0.5rem, 4vw, 2rem);
     padding-right: clamp(0.5rem, 4vw, 2rem);
     box-sizing: border-box;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .about-intro {
@@ -271,9 +295,12 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .subject-card {
@@ -325,9 +352,12 @@ section {
     max-width: 800px;
     margin: 0 auto;
     position: relative;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .timeline::before {
@@ -375,9 +405,12 @@ section {
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .education-item {
@@ -412,9 +445,12 @@ section {
     display: flex;
     align-items: center;
     gap: 1rem;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .testimonials-slider {
@@ -517,9 +553,12 @@ section {
     background-color: var(--bg-color);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .achievement-stat {
@@ -572,9 +611,12 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     padding: 2rem;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .booking-features {
@@ -733,9 +775,12 @@ input[type="tel"]:focus {
     grid-template-columns: 2fr 1fr;
     gap: 2rem;
     padding: 2rem;
+<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
 }
 
 .contact-info-card {
@@ -963,6 +1008,7 @@ footer {
 .testimonial-card {
     animation: fadeIn 1s ease-out;
 }
+<<<<<<< HEAD
 
 /* Enhanced Responsive Design - Multiple Breakpoints */
 
@@ -2002,3 +2048,5 @@ section,
         border-radius: 8px;
     }
 }
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7

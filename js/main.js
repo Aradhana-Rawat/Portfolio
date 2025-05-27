@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
+<<<<<<< HEAD
     const navLinksItems = document.querySelectorAll('.nav-links a');
 
     // Toggle mobile menu
@@ -16,12 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             document.body.style.overflow = '';
         }
+=======
+
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove('active');
+<<<<<<< HEAD
             navToggle.classList.remove('active');
             document.body.style.overflow = '';
         }
@@ -63,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             });
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
         }
     });
 });
@@ -198,7 +207,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('student-name').value;
         const grade = document.getElementById('grade').value;
         const subject = document.getElementById('subject').value;
+<<<<<<< HEAD
         const sessionType = document.getElementById('session-type').value;
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const date = document.getElementById('session-date').value;
@@ -211,7 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
             Name: ${name}
             Grade: ${grade}
             Subject: ${subject}
+<<<<<<< HEAD
             Session Type: ${sessionType}
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
             Phone: ${phone}
             Email: ${email}
             Preferred Date: ${date}
@@ -238,7 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p><strong>Name:</strong> ${name}</p>
                                 <p><strong>Grade:</strong> ${grade}</p>
                                 <p><strong>Subject:</strong> ${subject}</p>
+<<<<<<< HEAD
                                 <p><strong>Session Type:</strong> ${sessionType}</p>
+=======
+>>>>>>> e91c9ae6ee8994d8718368e004d756e0f8c900f7
                                 <p><strong>Phone:</strong> ${phone}</p>
                                 <p><strong>Email:</strong> ${email}</p>
                                 <p><strong>Preferred Date:</strong> ${date}</p>
